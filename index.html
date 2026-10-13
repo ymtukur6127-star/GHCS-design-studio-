@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>GHCS Structural Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand-mark">GH</div>
+  <h2>GRAND HILLS</h2>
+  <p class="brand-sub">CONCEPT SOLUTION LIMITED</p>
+  <nav>
+    <a href="#home">Home</a><a href="#projects">Projects</a>
+    <a href="#design">Design Tools</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+<main>
+  <section id="home" class="hero">
+    <p class="eyebrow">STRUCTURAL ENGINEERING WORKSPACE</p>
+    <h1>Structural Design Studio</h1>
+    <p>Organise structural projects and run preliminary engineering checks in one simple workspace.</p>
+    <button type="button" onclick="showDesign()">Start Designing</button>
+  </section>
+
+  <section id="projects">
+    <p class="eyebrow">PROJECT REGISTER</p><h2>Structural Projects</h2>
+    <form id="projectForm" class="panel">
+      <label>Project name<input id="projectName" required placeholder="e.g. Two-storey residential building"></label>
+      <label>Project location<input id="projectLocation" placeholder="Town / state"></label>
+      <label>Structure type<select id="projectType">
+        <option>Residential Building</option><option>Commercial Building</option>
+        <option>Industrial Structure</option><option>Bridge / Infrastructure</option>
+        <option>Retaining Wall</option><option>Other</option>
+      </select></label>
+      <label>Project status<select id="projectStatus"><option>Planning</option><option>In progress</option><option>Under review</option><option>Completed</option><option>On hold</option></select></label>
+      <button type="submit">Save Project</button>
+    </form>
+    <div id="projectList" class="project-list"></div>
+  </section>
+
+  <section id="design">
+    <p class="eyebrow">PRELIMINARY CALCULATORS</p><h2>Structural Design Tools</h2>
+    <div class="notice"><strong>Engineering safety:</strong> These simplified tools are for learning and early estimates only. They are not code-compliant designs and must not be used as the sole basis for construction. Have all real designs verified by a qualified structural engineer.</div>
+    <article class="panel tool">
+      <h3>01 · Simply Supported Beam</h3>
+      <p>Full-span uniformly distributed load (UDL).</p>
+      <label>Span, L (m)<input type="number" id="span" min="0.01" step="any" value="4"></label>
+      <label>UDL, w (kN/m)<input type="number" id="load" min="0" step="any" value="10"></label>
+      <button type="button" onclick="calculateBeam()">Calculate</button>
+      <div id="beamResult" class="result" aria-live="polite">Enter values and calculate.</div>
+    </article>
+    <article class="panel tool">
+      <h3>02 · Column Axial Stress</h3>
+      <p>Average stress under concentric axial loading; buckling and eccentricity are excluded.</p>
+      <label>Axial load, P (kN)<input type="number" id="axialLoad" min="0" step="any" value="500"></label>
+      <label>Width, b (mm)<input type="number" id="width" min="1" step="any" value="300"></label>
+      <label>Depth, h (mm)<input type="number" id="depth" min="1" step="any" value="300"></label>
+      <button type="button" onclick="calculateColumn()">Calculate</button>
+      <div id="columnResult" class="result" aria-live="polite">Enter values and calculate.</div>
+    </article>
+    <article class="panel tool">
+      <h3>03 · Slab Area Load</h3>
+      <label>Thickness (mm)<input type="number" id="slabThickness" min="1" step="any" value="150"></label>
+      <label>Concrete unit weight (kN/m³)<input type="number" id="unitWeight" min="1" step="any" value="24"></label>
+      <label>Imposed load (kN/m²)<input type="number" id="imposedLoad" min="0" step="any" value="2"></label>
+      <button type="button" onclick="calculateSlab()">Calculate</button>
+      <div id="slabResult" class="result" aria-live="polite">Enter values and calculate.</div>
+    </article>
+    <article class="panel tool">
+      <h3>04 · Preliminary Footing Area</h3>
+      <p>Uses service load divided by an assumed allowable soil pressure.</p>
+      <label>Service load (kN)<input type="number" id="footLoad" min="0" step="any" value="600"></label>
+      <label>Allowable soil pressure (kN/m²)<input type="number" id="soilPressure" min="0.01" step="any" value="150"></label>
+      <button type="button" onclick="calculateFooting()">Calculate</button>
+      <div id="footingResult" class="result" aria-live="polite">Enter values and calculate.</div>
+    </article>
+  </section>
+
+  <section id="contact">
+    <p class="eyebrow">GET IN TOUCH</p><h2>Contact GHCS</h2>
+    <div class="panel">
+      <p>Use this form to prepare a customer enquiry. Configure the company email in <code>script.js</code> to open a pre-filled email.</p>
+      <form id="contactForm">
+        <label>Your name<input id="clientName" required placeholder="Full name"></label>
+        <label>Email or phone<input id="clientReply" required placeholder="How can we reach you?"></label>
+        <label>Enquiry type<select id="enquiryType"><option>Structural design</option><option>Building assessment</option><option>Project consultation</option><option>Construction supervision</option><option>Other</option></select></label>
+        <label>Message<textarea id="message" rows="4" required placeholder="Describe your project or question"></textarea></label>
+        <button type="submit">Prepare Enquiry</button>
+      </form>
+      <p id="contactResult" class="result" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+<footer>© <span id="year"></span> Grand Hills Concept Solution Limited · Structural Studio</footer>
+<script src="script.js"></script>
+</body>
+</html>
